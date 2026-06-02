@@ -4,13 +4,13 @@ const App = (() => {
   // ---- 定数 ----
   const TIMER_MS    = 15000;
   const TICK_MS     = 100;
-  const FEEDBACK_MS = 1500;
+  const FEEDBACK_MS = 900;
 
   // エンドレスモード定数
   const GROUND_H         = 35;    // 地面高さ（px）
   const TANK_W           = 85;    // 戦車表示幅（近似）
   const ZOMBIE_W         = 36;    // ゾンビ衝突判定幅（px）
-  const ZOMBIE_SPEED     = 1.01;  // 前進速度（px/tick）※1.3×1.5×1.3倍
+  const ZOMBIE_SPEED     = 0.81;  // 前進速度（px/tick）※1.3×1.5×1.3×0.8倍
   const SPAWN_MS_INIT    = 7000;  // 初期スポーン間隔（ms）
   const SPAWN_MS_MIN     = 2500;  // 最小スポーン間隔（ms）
   const SPAWN_MS_DECREASE= 500;   // 15秒ごとに短縮（ms）
@@ -78,10 +78,31 @@ const App = (() => {
   }
 
   function generateChoices(correct) {
-    const sameCat  = WORDS.filter(w => w.category === correct.category && w.id !== correct.id);
-    const otherCat = WORDS.filter(w => w.category !== correct.category);
-    const pool     = shuffle([...sameCat, ...otherCat]);
-    return shuffle([correct, ...pool.slice(0, 3)]);
+    const firstChar  = correct.label.charAt(0);
+    const notCorrect = WORDS.filter(w => w.id !== correct.id);
+
+    // 一文字目が正解と同じ候補（最低1つ確保したい）
+    const sameFirst  = shuffle(notCorrect.filter(w => w.label.charAt(0) === firstChar));
+    // 同カテゴリで一文字目が違う候補
+    const sameCatDiff = shuffle(notCorrect.filter(w =>
+      w.category === correct.category && w.label.charAt(0) !== firstChar));
+    // その他
+    const rest = shuffle(notCorrect.filter(w =>
+      w.category !== correct.category && w.label.charAt(0) !== firstChar));
+
+    const wrongs = [];
+
+    // ① 一文字目が同じ選択肢を必ず1つ含める
+    if (sameFirst.length > 0) wrongs.push(sameFirst[0]);
+
+    // ② 残り2枠：同カテゴリ → その他 → 一文字目同じの残り の順で補充
+    const fillPool = [...sameCatDiff, ...rest, ...sameFirst.slice(1)];
+    for (const w of fillPool) {
+      if (wrongs.length >= 3) break;
+      wrongs.push(w);
+    }
+
+    return shuffle([correct, ...wrongs]);
   }
 
   // ---- タイマー ----
