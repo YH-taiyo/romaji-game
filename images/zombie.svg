@@ -1,0 +1,66 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 56 62" overflow="visible">
+  <!-- ===== 頭（大きい四角・マイクラ風） ===== -->
+  <!-- 頭の正面（明るい緑） -->
+  <rect x="8"  y="1"  width="22" height="22" fill="#5aad45"/>
+  <!-- 頭の側面（暗い緑・奥行き感） -->
+  <rect x="30" y="3"  width="6"  height="20" fill="#3d8a30"/>
+  <!-- 頭のトップ（上面） -->
+  <rect x="10" y="0"  width="22" height="3"  fill="#4c9e3a"/>
+  <!-- 頭の右エッジ -->
+  <polygon points="30,1 36,3 36,3 30,3" fill="#6abf55"/>
+
+  <!-- 左目（黒四角） -->
+  <rect x="11" y="9"  width="6"  height="6"  fill="#1a1a1a"/>
+  <!-- 右目（黒四角） -->
+  <rect x="20" y="9"  width="6"  height="6"  fill="#1a1a1a"/>
+  <!-- 目の白ハイライト -->
+  <rect x="14" y="10" width="2"  height="2"  fill="white" opacity="0.75"/>
+  <rect x="23" y="10" width="2"  height="2"  fill="white" opacity="0.75"/>
+
+  <!-- 口（ぽかん口） -->
+  <rect x="13" y="18" width="12" height="4"  fill="#1a1a1a"/>
+  <!-- 歯（白い四角2つ） -->
+  <rect x="14" y="18" width="4"  height="3"  fill="#e8e0c8"/>
+  <rect x="20" y="18" width="4"  height="3"  fill="#e8e0c8"/>
+
+  <!-- ===== 体（青シャツ） ===== -->
+  <!-- 体の正面 -->
+  <rect x="11" y="23" width="16" height="16" fill="#1a6bbf"/>
+  <!-- 体の側面 -->
+  <rect x="27" y="25" width="5"  height="14" fill="#135499"/>
+  <!-- 体のトップ -->
+  <rect x="12" y="22" width="16" height="3"  fill="#2080d0"/>
+  <!-- ボタン（小さい点） -->
+  <rect x="18" y="27" width="2"  height="2"  fill="#1050a0"/>
+  <rect x="18" y="31" width="2"  height="2"  fill="#1050a0"/>
+
+  <!-- ===== 腕（右・前方に伸ばす／右側） ===== -->
+  <!-- 上腕（青） -->
+  <rect x="27" y="23" width="12" height="6"  fill="#1a6bbf"/>
+  <!-- 前腕（緑の肌） -->
+  <rect x="39" y="23" width="12" height="6"  fill="#5aad45"/>
+  <!-- 手の先端（指っぽく） -->
+  <rect x="51" y="22" width="4"  height="3"  fill="#4c9e3a"/>
+  <rect x="51" y="25" width="4"  height="3"  fill="#4c9e3a"/>
+  <rect x="51" y="28" width="3"  height="2"  fill="#4c9e3a"/>
+
+  <!-- ===== 腕（左・後ろ側） ===== -->
+  <!-- 上腕（青） -->
+  <rect x="4"  y="25" width="7"  height="6"  fill="#135499"/>
+  <!-- 前腕（緑） -->
+  <rect x="1"  y="25" width="5"  height="6"  fill="#3d8a30"/>
+
+  <!-- ===== ズボン ===== -->
+  <!-- 左脚 -->
+  <rect x="11" y="39" width="7"  height="14" fill="#3d2b1a"/>
+  <!-- 右脚 -->
+  <rect x="20" y="39" width="7"  height="14" fill="#2e2010"/>
+  <!-- 脚の側面 -->
+  <rect x="27" y="41" width="3"  height="12" fill="#1e1508"/>
+
+  <!-- ===== 靴 ===== -->
+  <rect x="10" y="53" width="9"  height="5"  fill="#1a1a1a"/>
+  <rect x="19" y="54" width="9"  height="4"  fill="#111"/>
+  <!-- 靴のつま先 -->
+  <rect x="8"  y="55" width="4"  height="3"  fill="#222"/>
+</svg>
