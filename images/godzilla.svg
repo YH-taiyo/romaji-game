@@ -1,0 +1,54 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 80 105" width="80" height="105">
+  <!-- しっぽ -->
+  <path d="M 18,70 Q 8,62 4,72 Q 8,84 20,78" fill="#2e7d32"/>
+
+  <!-- 背びれ（とげ）-->
+  <polygon points="24,46 19,28 30,46" fill="#1b5e20"/>
+  <polygon points="37,42 32,23 43,42" fill="#1b5e20"/>
+  <polygon points="50,41 45,21 56,41" fill="#1b5e20"/>
+
+  <!-- からだ -->
+  <ellipse cx="42" cy="66" rx="26" ry="22" fill="#388e3c"/>
+
+  <!-- おなか（明るい） -->
+  <ellipse cx="44" cy="70" rx="16" ry="15" fill="#81c784"/>
+
+  <!-- くび -->
+  <path d="M 58,53 Q 67,44 72,52 Q 72,65 62,67 Q 57,67 57,58 Z" fill="#388e3c"/>
+
+  <!-- あたま -->
+  <ellipse cx="71" cy="47" rx="13" ry="11" fill="#388e3c"/>
+
+  <!-- した（あご） -->
+  <path d="M 58,54 Q 67,64 81,56 L 83,62 Q 70,74 57,62 Z" fill="#2e7d32"/>
+
+  <!-- め -->
+  <circle cx="72" cy="41" r="5" fill="#ffd740"/>
+  <circle cx="73" cy="42" r="3" fill="#111"/>
+  <circle cx="72" cy="41" r="1.2" fill="white"/>
+
+  <!-- はな -->
+  <circle cx="80" cy="47" r="1.5" fill="#1b5e20"/>
+
+  <!-- みじかいうで（右） -->
+  <path d="M 62,69 Q 70,75 67,83" stroke="#2e7d32" stroke-width="7" fill="none" stroke-linecap="round"/>
+  <line x1="63" y1="82" x2="59" y2="87" stroke="#1b5e20" stroke-width="2.5" stroke-linecap="round"/>
+  <line x1="66" y1="83" x2="65" y2="89" stroke="#1b5e20" stroke-width="2.5" stroke-linecap="round"/>
+  <line x1="69" y1="82" x2="71" y2="87" stroke="#1b5e20" stroke-width="2.5" stroke-linecap="round"/>
+
+  <!-- あし（左） -->
+  <path d="M 34,86 Q 31,94 27,98 Q 30,104 38,103 Q 44,103 43,97 Q 43,91 43,86 Z" fill="#2e7d32"/>
+
+  <!-- あし（右） -->
+  <path d="M 47,86 Q 44,94 40,98 Q 44,105 52,104 Q 58,103 57,97 Q 57,91 56,86 Z" fill="#2e7d32"/>
+
+  <!-- つめ（左） -->
+  <line x1="28" y1="101" x2="25" y2="105" stroke="#1b5e20" stroke-width="2" stroke-linecap="round"/>
+  <line x1="33" y1="103" x2="31" y2="107" stroke="#1b5e20" stroke-width="2" stroke-linecap="round"/>
+  <line x1="38" y1="103" x2="38" y2="107" stroke="#1b5e20" stroke-width="2" stroke-linecap="round"/>
+
+  <!-- つめ（右） -->
+  <line x1="42" y1="102" x2="39" y2="106" stroke="#1b5e20" stroke-width="2" stroke-linecap="round"/>
+  <line x1="47" y1="103" x2="46" y2="107" stroke="#1b5e20" stroke-width="2" stroke-linecap="round"/>
+  <line x1="52" y1="102" x2="53" y2="106" stroke="#1b5e20" stroke-width="2" stroke-linecap="round"/>
+</svg>
