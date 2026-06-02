@@ -1,0 +1,44 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 110 65" width="110" height="65">
+  <!-- キャタピラ（下部） -->
+  <rect x="6" y="43" width="98" height="20" rx="10" fill="#1a2a0a"/>
+
+  <!-- キャタピラのホイール -->
+  <circle cx="17" cy="53" r="8" fill="#2d3d10"/>
+  <circle cx="32" cy="53" r="8" fill="#2d3d10"/>
+  <circle cx="47" cy="53" r="8" fill="#2d3d10"/>
+  <circle cx="62" cy="53" r="8" fill="#2d3d10"/>
+  <circle cx="77" cy="53" r="8" fill="#2d3d10"/>
+  <circle cx="92" cy="53" r="8" fill="#2d3d10"/>
+
+  <!-- ホイール中心 -->
+  <circle cx="17" cy="53" r="4" fill="#111"/>
+  <circle cx="32" cy="53" r="4" fill="#111"/>
+  <circle cx="47" cy="53" r="4" fill="#111"/>
+  <circle cx="62" cy="53" r="4" fill="#111"/>
+  <circle cx="77" cy="53" r="4" fill="#111"/>
+  <circle cx="92" cy="53" r="4" fill="#111"/>
+
+  <!-- 車体 -->
+  <rect x="9" y="28" width="92" height="18" rx="4" fill="#4a5e20"/>
+  <!-- 車体ハイライト -->
+  <rect x="11" y="30" width="88" height="6" rx="2" fill="#5c7228" opacity="0.7"/>
+
+  <!-- 砲塔 -->
+  <path d="M 30,16 Q 30,10 42,8 L 90,8 Q 98,8 98,16 L 98,28 L 30,28 Z" fill="#3d5018"/>
+  <!-- 砲塔上面丸み -->
+  <ellipse cx="64" cy="12" rx="28" ry="8" fill="#4a5e20"/>
+
+  <!-- 砲身（左向き） -->
+  <rect x="0" y="19" width="42" height="8" rx="4" fill="#2d3d10"/>
+  <!-- 砲口 -->
+  <rect x="0" y="18" width="10" height="10" rx="3" fill="#1a2508"/>
+
+  <!-- ハッチ -->
+  <ellipse cx="68" cy="10" rx="9" ry="5" fill="#3d5018" stroke="#2d3d10" stroke-width="1.5"/>
+  <circle cx="68" cy="10" r="2.5" fill="#2d3d10"/>
+
+  <!-- アンテナ -->
+  <line x1="82" y1="2" x2="85" y2="10" stroke="#2d3d10" stroke-width="1.8" stroke-linecap="round"/>
+  <!-- アンテナ先端 -->
+  <circle cx="82" cy="2" r="1.5" fill="#1a2508"/>
+</svg>
