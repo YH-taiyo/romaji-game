@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="ローマ字の読みを楽しく練習できるゲーム（小学生向け）">
+  <title>ローマじ れんしゅう！</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- ===== タイトル画面 ===== -->
+  <section id="screen-title">
+    <div id="title-logo">
+      ローマじ<br>れんしゅう！
+    </div>
+    <div id="title-mascot" role="img" aria-label="ドラゴン">🐉</div>
+
+    <div id="title-highscore" hidden>
+      <h3>ハイスコア</h3>
+      <div id="title-hs-level"></div>
+      <div id="title-hs-score"></div>
+    </div>
+
+    <button id="btn-play" class="btn-primary">あそぶ</button>
+  </section>
+
+  <!-- ===== モード選択 ===== -->
+  <section id="screen-mode-select" hidden>
+    <p id="mode-heading">なんもん やる？</p>
+    <div class="mode-buttons">
+      <button id="btn-mode-5"  class="btn-primary">5もん</button>
+      <button id="btn-mode-10" class="btn-primary">10もん</button>
+    </div>
+    <button id="btn-mode-gz" class="btn-godzilla">🧟 エンドレス</button>
+    <button id="btn-back" class="btn-ghost">もどる</button>
+  </section>
+
+  <!-- ===== プレイ画面 ===== -->
+  <section id="screen-playing" hidden>
+    <div id="playing-header">
+      <span id="progress-text">1 / 5 もん</span>
+      <span id="score-text">スコア: 0</span>
+    </div>
+
+    <div id="timer-track" role="progressbar" aria-label="タイマー">
+      <div id="timer-bar"></div>
+    </div>
+
+    <div id="romaji-display" aria-live="polite"></div>
+
+    <div id="choices-grid" role="group" aria-label="こたえをえらんでね"></div>
+
+    <div id="endless-panel" hidden>
+      <div id="battle-stage">
+        <!-- ゾンビは JS で動的生成 -->
+        <div id="projectile" hidden></div>
+        <img id="tank-sprite" src="images/tank.svg" alt="戦車" class="battle-sprite">
+      </div>
+    </div>
+
+    <div id="feedback-overlay" class="feedback-overlay" hidden aria-live="assertive"></div>
+
+    <!-- ゲームオーバーオーバーレイ（画面切り替えなし） -->
+    <div id="gameover-overlay" hidden>
+      <div id="gameover-box">
+        <div id="gameover-title">💀 GAME OVER</div>
+        <div id="gameover-score-text"></div>
+        <div id="gameover-answered"></div>
+        <div id="gameover-hs"></div>
+        <div class="gameover-buttons">
+          <button id="btn-go-retry"  class="btn-primary">もう一度</button>
+          <button id="btn-go-title"  class="btn-secondary">タイトルへ</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== リザルト画面 ===== -->
+  <section id="screen-result" hidden>
+    <h2 id="result-heading">けっか</h2>
+    <div id="result-animal-emoji" role="img" aria-label="レベル動物"></div>
+    <div id="result-level-text"></div>
+
+    <div id="result-score-block">
+      <div id="result-score"></div>
+      <div id="result-rate"></div>
+    </div>
+
+    <div id="new-record-badge" hidden>🎉 しんきろく！</div>
+
+    <div id="highscore-block" hidden>
+      <h3>ハイスコア</h3>
+      <div id="highscore-level"></div>
+      <div id="highscore-score"></div>
+    </div>
+
+    <div class="result-buttons">
+      <button id="btn-retry"       class="btn-primary">もう一度</button>
+      <button id="btn-mode-select" class="btn-secondary">モードをかえる</button>
+      <button id="btn-to-title"    class="btn-ghost">タイトルへ</button>
+    </div>
+  </section>
+
+  <footer>
+    イラスト: <a href="https://www.irasutoya.com/" target="_blank" rel="noopener">いらすとや</a>
+  </footer>
+
+  <script src="js/words.js"></script>
+  <script src="js/storage.js"></script>
+  <script src="js/game.js"></script>
+</body>
+</html>
