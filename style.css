@@ -138,10 +138,26 @@ button:active { transform: scale(0.97); }
 }
 .mode-buttons .btn-primary {
   flex: 1;
-  font-size: 1.4rem;
-  padding: 16px 0;
+  font-size: 1.2rem;
+  padding: 14px 0;
   text-align: center;
 }
+
+/* ゲーム中タイトル戻るボタン */
+.btn-playing-back {
+  background: transparent;
+  border: none;
+  font-size: 1.3rem;
+  cursor: pointer;
+  padding: 4px 8px;
+  border-radius: 6px;
+  line-height: 1;
+  opacity: 0.55;
+  transition: opacity 0.15s;
+  -webkit-tap-highlight-color: transparent;
+}
+.btn-playing-back:hover  { opacity: 1; }
+.btn-playing-back:active { opacity: 1; transform: scale(0.92); }
 
 /* ===== プレイ画面 ===== */
 #playing-header {
