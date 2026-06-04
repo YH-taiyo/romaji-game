@@ -154,3 +154,91 @@ const WORDS = [
   { id: 'yakyu',      romaji: 'yakyu',      label: 'やきゅう',   image: 'yakyu.png',      category: 'play' },
   { id: 'sakka',      romaji: 'sakka',      label: 'サッカー',   image: 'sakka.png',      category: 'play' },
 ];
+
+// ===== 1文字モード用データ（清音 + 濁点 + 半濁点） =====
+const CHARS = [
+  // 母音
+  { id:'c_a',   romaji:'a',   label:'あ', category:'vowels' },
+  { id:'c_i',   romaji:'i',   label:'い', category:'vowels' },
+  { id:'c_u',   romaji:'u',   label:'う', category:'vowels' },
+  { id:'c_e',   romaji:'e',   label:'え', category:'vowels' },
+  { id:'c_o',   romaji:'o',   label:'お', category:'vowels' },
+  // か行
+  { id:'c_ka',  romaji:'ka',  label:'か', category:'ka' },
+  { id:'c_ki',  romaji:'ki',  label:'き', category:'ka' },
+  { id:'c_ku',  romaji:'ku',  label:'く', category:'ka' },
+  { id:'c_ke',  romaji:'ke',  label:'け', category:'ka' },
+  { id:'c_ko',  romaji:'ko',  label:'こ', category:'ka' },
+  // さ行
+  { id:'c_sa',  romaji:'sa',  label:'さ', category:'sa' },
+  { id:'c_shi', romaji:'shi', label:'し', category:'sa' },
+  { id:'c_su',  romaji:'su',  label:'す', category:'sa' },
+  { id:'c_se',  romaji:'se',  label:'せ', category:'sa' },
+  { id:'c_so',  romaji:'so',  label:'そ', category:'sa' },
+  // た行
+  { id:'c_ta',  romaji:'ta',  label:'た', category:'ta' },
+  { id:'c_chi', romaji:'chi', label:'ち', category:'ta' },
+  { id:'c_tsu', romaji:'tsu', label:'つ', category:'ta' },
+  { id:'c_te',  romaji:'te',  label:'て', category:'ta' },
+  { id:'c_to',  romaji:'to',  label:'と', category:'ta' },
+  // な行
+  { id:'c_na',  romaji:'na',  label:'な', category:'na' },
+  { id:'c_ni',  romaji:'ni',  label:'に', category:'na' },
+  { id:'c_nu',  romaji:'nu',  label:'ぬ', category:'na' },
+  { id:'c_ne',  romaji:'ne',  label:'ね', category:'na' },
+  { id:'c_no',  romaji:'no',  label:'の', category:'na' },
+  // は行
+  { id:'c_ha',  romaji:'ha',  label:'は', category:'ha' },
+  { id:'c_hi',  romaji:'hi',  label:'ひ', category:'ha' },
+  { id:'c_fu',  romaji:'fu',  label:'ふ', category:'ha' },
+  { id:'c_he',  romaji:'he',  label:'へ', category:'ha' },
+  { id:'c_ho',  romaji:'ho',  label:'ほ', category:'ha' },
+  // ま行
+  { id:'c_ma',  romaji:'ma',  label:'ま', category:'ma' },
+  { id:'c_mi',  romaji:'mi',  label:'み', category:'ma' },
+  { id:'c_mu',  romaji:'mu',  label:'む', category:'ma' },
+  { id:'c_me',  romaji:'me',  label:'め', category:'ma' },
+  { id:'c_mo',  romaji:'mo',  label:'も', category:'ma' },
+  // や行
+  { id:'c_ya',  romaji:'ya',  label:'や', category:'ya' },
+  { id:'c_yu',  romaji:'yu',  label:'ゆ', category:'ya' },
+  { id:'c_yo',  romaji:'yo',  label:'よ', category:'ya' },
+  // ら行
+  { id:'c_ra',  romaji:'ra',  label:'ら', category:'ra' },
+  { id:'c_ri',  romaji:'ri',  label:'り', category:'ra' },
+  { id:'c_ru',  romaji:'ru',  label:'る', category:'ra' },
+  { id:'c_re',  romaji:'re',  label:'れ', category:'ra' },
+  { id:'c_ro',  romaji:'ro',  label:'ろ', category:'ra' },
+  // わ行・ん
+  { id:'c_wa',  romaji:'wa',  label:'わ', category:'wa' },
+  { id:'c_wo',  romaji:'wo',  label:'を', category:'wa' },
+  { id:'c_n',   romaji:'n',   label:'ん', category:'wa' },
+  // が行
+  { id:'c_ga',  romaji:'ga',  label:'が', category:'ga' },
+  { id:'c_gi',  romaji:'gi',  label:'ぎ', category:'ga' },
+  { id:'c_gu',  romaji:'gu',  label:'ぐ', category:'ga' },
+  { id:'c_ge',  romaji:'ge',  label:'げ', category:'ga' },
+  { id:'c_go',  romaji:'go',  label:'ご', category:'ga' },
+  // ざ行
+  { id:'c_za',  romaji:'za',  label:'ざ', category:'za' },
+  { id:'c_ji',  romaji:'ji',  label:'じ', category:'za' },
+  { id:'c_zu',  romaji:'zu',  label:'ず', category:'za' },
+  { id:'c_ze',  romaji:'ze',  label:'ぜ', category:'za' },
+  { id:'c_zo',  romaji:'zo',  label:'ぞ', category:'za' },
+  // だ行（ぢ・づ除く）
+  { id:'c_da',  romaji:'da',  label:'だ', category:'da' },
+  { id:'c_de',  romaji:'de',  label:'で', category:'da' },
+  { id:'c_do',  romaji:'do',  label:'ど', category:'da' },
+  // ば行
+  { id:'c_ba',  romaji:'ba',  label:'ば', category:'ba' },
+  { id:'c_bi',  romaji:'bi',  label:'び', category:'ba' },
+  { id:'c_bu',  romaji:'bu',  label:'ぶ', category:'ba' },
+  { id:'c_be',  romaji:'be',  label:'べ', category:'ba' },
+  { id:'c_bo',  romaji:'bo',  label:'ぼ', category:'ba' },
+  // ぱ行
+  { id:'c_pa',  romaji:'pa',  label:'ぱ', category:'pa' },
+  { id:'c_pi',  romaji:'pi',  label:'ぴ', category:'pa' },
+  { id:'c_pu',  romaji:'pu',  label:'ぷ', category:'pa' },
+  { id:'c_pe',  romaji:'pe',  label:'ぺ', category:'pa' },
+  { id:'c_po',  romaji:'po',  label:'ぽ', category:'pa' },
+];
