@@ -115,18 +115,31 @@ button:active { transform: scale(0.97); }
 
 /* ===== モード選択 ===== */
 #mode-heading {
-  font-size: 1.4rem;
+  font-size: 1.3rem;
   font-weight: bold;
+}
+.mode-group {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.mode-group-label {
+  font-size: 0.85rem;
+  color: var(--color-muted);
+  font-weight: bold;
+  text-align: center;
+  letter-spacing: 0.05em;
 }
 .mode-buttons {
   display: flex;
-  gap: 16px;
+  gap: 12px;
   width: 100%;
 }
 .mode-buttons .btn-primary {
   flex: 1;
-  font-size: 1.5rem;
-  padding: 20px 0;
+  font-size: 1.4rem;
+  padding: 16px 0;
   text-align: center;
 }
 
