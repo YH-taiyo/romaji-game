@@ -29,6 +29,7 @@ const App = (() => {
   let state         = 'TITLE';
   let mode          = 5;
   let endlessMode   = false;
+  let charMode      = false;    // 1文字モードフラグ
   let questionList  = [];
   let questionIndex = 0;
   let totalScore    = 0;
@@ -65,6 +66,11 @@ const App = (() => {
     return LEVELS.find(l => scoreRate >= l.min);
   }
 
+  // 1文字モードは制限時間 3/4
+  function getTimerMs() {
+    return charMode ? Math.round(TIMER_MS * 0.75) : TIMER_MS;
+  }
+
   // ---- 画面遷移 ----
   function transitionTo(newState) {
     if (screens[state]) screens[state].hidden = true;
@@ -74,12 +80,23 @@ const App = (() => {
 
   // ---- 問題生成 ----
   function buildQuestionList() {
-    return shuffle([...WORDS]).slice(0, endlessMode ? WORDS.length : mode);
+    const list = charMode ? CHARS : WORDS;
+    return shuffle([...list]).slice(0, endlessMode ? list.length : mode);
   }
 
   function generateChoices(correct) {
+    const pool       = charMode ? CHARS : WORDS;
+    const notCorrect = pool.filter(w => w.id !== correct.id);
+
+    if (charMode) {
+      // 1文字モード: 同行（同カテゴリ）優先で3択
+      const sameCat  = shuffle(notCorrect.filter(w => w.category === correct.category));
+      const otherCat = shuffle(notCorrect.filter(w => w.category !== correct.category));
+      return shuffle([correct, ...[...sameCat, ...otherCat].slice(0, 3)]);
+    }
+
+    // 言葉モード: 一文字目一致ロジック
     const firstChar  = correct.label.charAt(0);
-    const notCorrect = WORDS.filter(w => w.id !== correct.id);
 
     // 一文字目が正解と同じ候補（最低1つ確保したい）
     const sameFirst  = shuffle(notCorrect.filter(w => w.label.charAt(0) === firstChar));
@@ -107,7 +124,7 @@ const App = (() => {
 
   // ---- タイマー ----
   function startTimer() {
-    remainingMs = TIMER_MS;
+    remainingMs = getTimerMs();
     updateTimerBar();
     timerInterval = setInterval(() => {
       remainingMs -= TICK_MS;
@@ -128,7 +145,7 @@ const App = (() => {
   function updateTimerBar() {
     const bar = $('timer-bar');
     if (!bar) return;
-    const pct = (remainingMs / TIMER_MS) * 100;
+    const pct = (remainingMs / getTimerMs()) * 100;
     bar.style.width = pct + '%';
     bar.classList.toggle('low', remainingMs <= 3000);
   }
@@ -139,7 +156,7 @@ const App = (() => {
     answered = false;
 
     if (endlessMode && idx >= questionList.length) {
-      questionList  = shuffle([...WORDS]);
+      questionList  = shuffle([...(charMode ? CHARS : WORDS)]);
       questionIndex = 0;
       idx = 0;
     }
@@ -180,7 +197,7 @@ const App = (() => {
     const isCorrect = selectedId === correct.id;
 
     if (isCorrect) {
-      const bonus = Math.floor((remainingMs / TIMER_MS) * 50);
+      const bonus = Math.floor((remainingMs / getTimerMs()) * 50);
       totalScore += 100 + bonus;
     }
 
@@ -446,9 +463,11 @@ const App = (() => {
 
     $('btn-play').addEventListener('click', () => transitionTo('MODE_SELECT'));
 
-    $('btn-mode-5').addEventListener('click',  () => startGame(5,  false));
-    $('btn-mode-10').addEventListener('click', () => startGame(10, false));
-    $('btn-mode-gz').addEventListener('click', () => startGame(0,  true));
+    $('btn-char-5').addEventListener('click',  () => startGame(5,  false, true));
+    $('btn-char-10').addEventListener('click', () => startGame(10, false, true));
+    $('btn-mode-5').addEventListener('click',  () => startGame(5,  false, false));
+    $('btn-mode-10').addEventListener('click', () => startGame(10, false, false));
+    $('btn-mode-gz').addEventListener('click', () => startGame(0,  true,  false));
 
     $('btn-back').addEventListener('click', () => {
       stopEndless();
@@ -456,10 +475,10 @@ const App = (() => {
       updateTitleHighscore();
     });
 
-    $('btn-retry').addEventListener('click',       () => startGame(mode, endlessMode));
+    $('btn-retry').addEventListener('click',       () => startGame(mode, endlessMode, charMode));
     $('btn-go-retry').addEventListener('click', () => {
       $('gameover-overlay').hidden = true;
-      startGame(mode, endlessMode);
+      startGame(mode, endlessMode, charMode);
     });
     $('btn-go-title').addEventListener('click', () => {
       $('gameover-overlay').hidden = true;
@@ -476,7 +495,7 @@ const App = (() => {
     transitionTo('TITLE');
   }
 
-  function startGame(m, isEndless) {
+  function startGame(m, isEndless, isChar = false) {
     stopEndless();
     stopTimer();
     const goOverlay = $('gameover-overlay');
@@ -484,6 +503,7 @@ const App = (() => {
 
     mode          = m;
     endlessMode   = isEndless;
+    charMode      = isChar;
     totalScore    = 0;
     questionIndex = 0;
     answeredCount = 0;
