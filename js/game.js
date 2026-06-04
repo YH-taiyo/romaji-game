@@ -71,6 +71,12 @@ const App = (() => {
     return charMode ? Math.round(TIMER_MS * 0.75) : TIMER_MS;
   }
 
+  // モード別ハイスコアキー
+  function getModeKey() {
+    if (endlessMode) return 'hs_endless';
+    return `hs_${charMode ? 'char' : 'word'}_${mode}`;
+  }
+
   // ---- 画面遷移 ----
   function transitionTo(newState) {
     if (screens[state]) screens[state].hidden = true;
@@ -351,10 +357,10 @@ const App = (() => {
     $('gameover-score-text').textContent = `${totalScore} てん`;
     $('gameover-answered').textContent   = `${answeredCount} もん　せいかいりつ ${rate}%`;
 
-    const saved = Storage.get();
+    const saved = Storage.get(getModeKey());
     const isNew = !saved || totalScore > saved.score;
     if (isNew) {
-      Storage.set({ score: totalScore, scoreRate: rate, mode: 'endless', date: new Date().toISOString() });
+      Storage.set(getModeKey(), { score: totalScore, scoreRate: rate, date: new Date().toISOString() });
       $('gameover-hs').textContent = `🎉 しんきろく！  ${lv.emoji} Lv.${lv.level} ${lv.name}`;
     } else {
       const hvl = getLevel(saved.scoreRate);
@@ -422,12 +428,12 @@ const App = (() => {
       ? `${answeredCount} もん　せいかいりつ ${rate}%`
       : `${totalScore} / ${denominator} てん（${rate}%）`;
 
-    const saved = Storage.get();
+    const saved = Storage.get(getModeKey());
     const isNew = !saved || totalScore > saved.score;
     const badge = $('new-record-badge');
 
     if (isNew) {
-      Storage.set({ score: totalScore, scoreRate: rate, mode: endlessMode ? 'endless' : mode, date: new Date().toISOString() });
+      Storage.set(getModeKey(), { score: totalScore, scoreRate: rate, date: new Date().toISOString() });
       badge.hidden = false;
       $('highscore-block').hidden = false;
       $('highscore-score').textContent = `${totalScore} てん`;
@@ -441,13 +447,22 @@ const App = (() => {
     }
   }
 
-  // ---- タイトル画面のハイスコア表示 ----
+  // ---- タイトル画面のハイスコア表示（全モード中の最高点） ----
   function updateTitleHighscore() {
-    const saved = Storage.get();
+    const allKeys = [
+      'hs_char_5','hs_char_10','hs_char_15',
+      'hs_word_5','hs_word_10','hs_word_15',
+      'hs_endless',
+    ];
+    const best = allKeys
+      .map(k => Storage.get(k))
+      .filter(Boolean)
+      .reduce((a, b) => (!a || b.score > a.score) ? b : a, null);
+
     const block = $('title-highscore');
-    if (saved) {
-      const lv = getLevel(saved.scoreRate);
-      $('title-hs-score').textContent = `${saved.score} てん`;
+    if (best) {
+      const lv = getLevel(best.scoreRate);
+      $('title-hs-score').textContent = `${best.score} てん`;
       $('title-hs-level').textContent = `${lv.emoji} Lv.${lv.level} ${lv.name}`;
       block.hidden = false;
     } else {
@@ -465,12 +480,23 @@ const App = (() => {
 
     $('btn-char-5').addEventListener('click',  () => startGame(5,  false, true));
     $('btn-char-10').addEventListener('click', () => startGame(10, false, true));
+    $('btn-char-15').addEventListener('click', () => startGame(15, false, true));
     $('btn-mode-5').addEventListener('click',  () => startGame(5,  false, false));
     $('btn-mode-10').addEventListener('click', () => startGame(10, false, false));
+    $('btn-mode-15').addEventListener('click', () => startGame(15, false, false));
     $('btn-mode-gz').addEventListener('click', () => startGame(0,  true,  false));
 
     $('btn-back').addEventListener('click', () => {
       stopEndless();
+      transitionTo('TITLE');
+      updateTitleHighscore();
+    });
+
+    $('btn-playing-back').addEventListener('click', () => {
+      stopTimer();
+      stopEndless();
+      const goOverlay = $('gameover-overlay');
+      if (goOverlay) goOverlay.hidden = true;
       transitionTo('TITLE');
       updateTitleHighscore();
     });
