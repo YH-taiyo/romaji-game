@@ -487,9 +487,12 @@ const App = (() => {
     $('btn-mode-5').addEventListener('click',  () => startGame(5,  false, false));
     $('btn-mode-10').addEventListener('click', () => startGame(10, false, false));
     $('btn-mode-15').addEventListener('click', () => startGame(15, false, false));
-    $('btn-hard-5').addEventListener('click',  () => startGame(5,  false, false, true));
-    $('btn-hard-10').addEventListener('click', () => startGame(10, false, false, true));
-    $('btn-hard-15').addEventListener('click', () => startGame(15, false, false, true));
+    const h5  = $('btn-hard-5');
+    const h10 = $('btn-hard-10');
+    const h15 = $('btn-hard-15');
+    if (h5)  h5.addEventListener('click',  () => startGame(5,  false, false, true));
+    if (h10) h10.addEventListener('click', () => startGame(10, false, false, true));
+    if (h15) h15.addEventListener('click', () => startGame(15, false, false, true));
     $('btn-mode-gz').addEventListener('click', () => startGame(0,  true,  false));
 
     $('btn-back').addEventListener('click', () => {
