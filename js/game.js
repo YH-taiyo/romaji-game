@@ -30,6 +30,7 @@ const App = (() => {
   let mode          = 5;
   let endlessMode   = false;
   let charMode      = false;    // 1文字モードフラグ
+  let hardMode      = false;    // むずかしいモードフラグ
   let questionList  = [];
   let questionIndex = 0;
   let totalScore    = 0;
@@ -66,14 +67,15 @@ const App = (() => {
     return LEVELS.find(l => scoreRate >= l.min);
   }
 
-  // 1文字モードは制限時間 3/4
+  // 1文字・むずかしいモードは制限時間 3/4
   function getTimerMs() {
-    return charMode ? Math.round(TIMER_MS * 0.75) : TIMER_MS;
+    return (charMode || hardMode) ? Math.round(TIMER_MS * 0.75) : TIMER_MS;
   }
 
   // モード別ハイスコアキー
   function getModeKey() {
     if (endlessMode) return 'hs_endless';
+    if (hardMode)    return `hs_hard_${mode}`;
     return `hs_${charMode ? 'char' : 'word'}_${mode}`;
   }
 
@@ -86,16 +88,16 @@ const App = (() => {
 
   // ---- 問題生成 ----
   function buildQuestionList() {
-    const list = charMode ? CHARS : WORDS;
+    const list = hardMode ? HARD_CHARS : (charMode ? CHARS : WORDS);
     return shuffle([...list]).slice(0, endlessMode ? list.length : mode);
   }
 
   function generateChoices(correct) {
-    const pool       = charMode ? CHARS : WORDS;
+    const pool       = hardMode ? HARD_CHARS : (charMode ? CHARS : WORDS);
     const notCorrect = pool.filter(w => w.id !== correct.id);
 
-    if (charMode) {
-      // 1文字モード: 同行（同カテゴリ）優先で3択
+    if (charMode || hardMode) {
+      // 1文字・むずかしいモード: 同行（同カテゴリ）優先で3択
       const sameCat  = shuffle(notCorrect.filter(w => w.category === correct.category));
       const otherCat = shuffle(notCorrect.filter(w => w.category !== correct.category));
       return shuffle([correct, ...[...sameCat, ...otherCat].slice(0, 3)]);
@@ -452,6 +454,7 @@ const App = (() => {
     const allKeys = [
       'hs_char_5','hs_char_10','hs_char_15',
       'hs_word_5','hs_word_10','hs_word_15',
+      'hs_hard_5','hs_hard_10','hs_hard_15',
       'hs_endless',
     ];
     const best = allKeys
@@ -484,6 +487,9 @@ const App = (() => {
     $('btn-mode-5').addEventListener('click',  () => startGame(5,  false, false));
     $('btn-mode-10').addEventListener('click', () => startGame(10, false, false));
     $('btn-mode-15').addEventListener('click', () => startGame(15, false, false));
+    $('btn-hard-5').addEventListener('click',  () => startGame(5,  false, false, true));
+    $('btn-hard-10').addEventListener('click', () => startGame(10, false, false, true));
+    $('btn-hard-15').addEventListener('click', () => startGame(15, false, false, true));
     $('btn-mode-gz').addEventListener('click', () => startGame(0,  true,  false));
 
     $('btn-back').addEventListener('click', () => {
@@ -521,7 +527,7 @@ const App = (() => {
     transitionTo('TITLE');
   }
 
-  function startGame(m, isEndless, isChar = false) {
+  function startGame(m, isEndless, isChar = false, isHard = false) {
     stopEndless();
     stopTimer();
     const goOverlay = $('gameover-overlay');
@@ -530,6 +536,7 @@ const App = (() => {
     mode          = m;
     endlessMode   = isEndless;
     charMode      = isChar;
+    hardMode      = isHard;
     totalScore    = 0;
     questionIndex = 0;
     answeredCount = 0;
