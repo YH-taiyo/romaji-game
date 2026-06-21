@@ -155,6 +155,60 @@ const WORDS = [
   { id: 'sakka',      romaji: 'sakka',      label: 'サッカー',   image: 'sakka.png',      category: 'play' },
 ];
 
+// ===== むずかしいモード用データ（不規則単文字 + 拗音） =====
+const HARD_CHARS = [
+  // 不規則な単文字
+  { id:'h_shi', romaji:'shi', label:'し',   category:'sa'  },
+  { id:'h_chi', romaji:'chi', label:'ち',   category:'ta'  },
+  { id:'h_tsu', romaji:'tsu', label:'つ',   category:'ta'  },
+  { id:'h_fu',  romaji:'fu',  label:'ふ',   category:'ha'  },
+  { id:'h_ji',  romaji:'ji',  label:'じ',   category:'za'  },
+  // しゃ行
+  { id:'h_sha', romaji:'sha', label:'しゃ', category:'sha' },
+  { id:'h_shu', romaji:'shu', label:'しゅ', category:'sha' },
+  { id:'h_sho', romaji:'sho', label:'しょ', category:'sha' },
+  // ちゃ行
+  { id:'h_cha', romaji:'cha', label:'ちゃ', category:'cha' },
+  { id:'h_chu', romaji:'chu', label:'ちゅ', category:'cha' },
+  { id:'h_cho', romaji:'cho', label:'ちょ', category:'cha' },
+  // じゃ行
+  { id:'h_ja',  romaji:'ja',  label:'じゃ', category:'ja'  },
+  { id:'h_ju',  romaji:'ju',  label:'じゅ', category:'ja'  },
+  { id:'h_jo',  romaji:'jo',  label:'じょ', category:'ja'  },
+  // にゃ行
+  { id:'h_nya', romaji:'nya', label:'にゃ', category:'nya' },
+  { id:'h_nyu', romaji:'nyu', label:'にゅ', category:'nya' },
+  { id:'h_nyo', romaji:'nyo', label:'にょ', category:'nya' },
+  // きゃ行
+  { id:'h_kya', romaji:'kya', label:'きゃ', category:'kya' },
+  { id:'h_kyu', romaji:'kyu', label:'きゅ', category:'kya' },
+  { id:'h_kyo', romaji:'kyo', label:'きょ', category:'kya' },
+  // ひゃ行
+  { id:'h_hya', romaji:'hya', label:'ひゃ', category:'hya' },
+  { id:'h_hyu', romaji:'hyu', label:'ひゅ', category:'hya' },
+  { id:'h_hyo', romaji:'hyo', label:'ひょ', category:'hya' },
+  // りゃ行
+  { id:'h_rya', romaji:'rya', label:'りゃ', category:'rya' },
+  { id:'h_ryu', romaji:'ryu', label:'りゅ', category:'rya' },
+  { id:'h_ryo', romaji:'ryo', label:'りょ', category:'rya' },
+  // ぎゃ行
+  { id:'h_gya', romaji:'gya', label:'ぎゃ', category:'gya' },
+  { id:'h_gyu', romaji:'gyu', label:'ぎゅ', category:'gya' },
+  { id:'h_gyo', romaji:'gyo', label:'ぎょ', category:'gya' },
+  // びゃ行
+  { id:'h_bya', romaji:'bya', label:'びゃ', category:'bya' },
+  { id:'h_byu', romaji:'byu', label:'びゅ', category:'bya' },
+  { id:'h_byo', romaji:'byo', label:'びょ', category:'bya' },
+  // ぴゃ行
+  { id:'h_pya', romaji:'pya', label:'ぴゃ', category:'pya' },
+  { id:'h_pyu', romaji:'pyu', label:'ぴゅ', category:'pya' },
+  { id:'h_pyo', romaji:'pyo', label:'ぴょ', category:'pya' },
+  // みゃ行
+  { id:'h_mya', romaji:'mya', label:'みゃ', category:'mya' },
+  { id:'h_myu', romaji:'myu', label:'みゅ', category:'mya' },
+  { id:'h_myo', romaji:'myo', label:'みょ', category:'mya' },
+];
+
 // ===== 1文字モード用データ（清音 + 濁点 + 半濁点） =====
 const CHARS = [
   // 母音
